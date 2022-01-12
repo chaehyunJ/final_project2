@@ -21,6 +21,7 @@
 <body>
 <script src="${ cpath }/resources/js/main.js"></script>
 <script src="${ cpath }/resources/js/step2.js"></script>
+<script src="${ cpath }/resources/js/promotion.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 

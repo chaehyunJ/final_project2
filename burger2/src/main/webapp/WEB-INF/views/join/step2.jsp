@@ -37,7 +37,7 @@
             <p>이메일 인증 </p>      
             <input id= "authResult" type="text" name="authresult" placeholder="인증번호 입력">
   			<input id="authChkBtn" type="button" value="인증확인">
-  			<span id="authResultText"></span>
+  			<span id="emailResult"></span>
             <hr>
             <input id="mainSubmit" type="submit" value="가입">
         </form>
@@ -70,7 +70,7 @@
     </footer>
     
     <script>
-    	const cpath = '${ cpath }'
+		const cpath = '${ cpath }'
     	const address = document.querySelector('input[name="address"]')
     	const idchk = document.getElementById('idChkBtn')
     	const userid = document.querySelector('input[name="userid"]')
@@ -78,9 +78,10 @@
     	const mainBtn = document.getElementById('mainBtn')
     	const email = document.querySelector('input[name="email"]')
 		const emailAuth = document.getElementById('emailAuth')
-		const authChkBtn = document.getElementById('authChkBtn')
-		const authResultText = document.getElementById('authResultText')
-    	const authResult = document.getElementById('authResult')
+		const authChkBtn = document.getElementById('authChkBtn') 
+    	const emailResult = document.getElementById('emailResult')
+		const authInput = document.querySelector('input[name="authresult"]')
+    	
 		const form = document.forms[0]
     	
     	idchk.onclick = function(){
@@ -121,9 +122,9 @@
     	}
     	
     	authChkBtn.onclick = function(){
-    		console.log(authResult.value)
-    		
-    		const url = cpath + '/ajaxAuth/' + authResult.value
+    		const authResult = document.querySelector('input[name="authresult"]').value
+    		console.log(authResult)
+    		const url = cpath + '/ajaxAuth/' + authResult 
     		const opt = {
     			method : 'get'
     		}
@@ -133,19 +134,20 @@
     			console.log(json)
     			
     			if(json.status == 'OK'){
-    				authResultText.innerText = json.message
-    				authResultText.style.color = 'blue'
-    				authResult.disabled = 'disabled'
-    				const authChk = document.createElement('input')
-    				authChk.name = 'emailAuth'
-    				authChk.type = 'hidden'
-    				authChk.value = 'y'
-    				form.appendChild(authChk)
+    				emailResult.innerText = json.message
+    				emailResult.style.color = 'blue'
+    				email.disabled = 'disabled'
+    				authInput.disabled = 'disabled'
+    				const emailAuth = document.createElement('input')
+    				emailAuth.name = 'emailAuth'
+    				emailAuth.type = 'hidden'
+    				emailAuth.value = 'y'
+    				form.appendChild(emailAuth)
     			}
     			else{
-    				authResultText.innerText = json.message
-    				authMailMsg.style.color = 'red'
-    				auth.select()
+    				emailResult.innerText = json.message
+    				emailResult.style.color = 'red'
+    				email.select()
     			}
     		})
     	}

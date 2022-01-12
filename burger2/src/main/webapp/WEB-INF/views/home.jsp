@@ -18,8 +18,8 @@
 
     <div class="title-main"><h2>Coded Burger Live</h2></div>
 
-    <div class="main-inner .detailinfo">
-        <div class="main-inner-one"></div>
+    <div class="main-inner detailinfo">
+<!--         <div class="main-inner-one"></div> -->
     </div>
 
     <div class="btn-list">
